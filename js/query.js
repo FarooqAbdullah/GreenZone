@@ -40,6 +40,24 @@ jQuery(document).ready(
 			}
 		);
 		
+		$('#menu-main_navigation').find('> li._contact_us').find('a').click(
+			function(event) {
+				event.preventDefault();
+				var sectionID = $(this).attr("data-target");
+				scrollToID('#' + sectionID, 1500);
+			}
+		);
+		
+		function scrollToID(id, speed){
+            var offSet = 50;
+            var targetOffset = $(id).offset().top - offSet;
+           $('html,body').animate({scrollTop:targetOffset}, speed);
+        }
+		
+		$('#menu-main_navigation').find('> li._login').find('a').attr('data-toggle','modal');
+		$('#menu-main_navigation').find('> li._login').find('a').attr('data-target','#login');
+		$('#menu-main_navigation').find('> li._contact_us').find('a').attr('data-target','footer');
+		
 		$('._modal').find('#login').find('.modal-body').find('._have_an_account').find('._sign_up').click(
 			function(event){
 				$(this).parents('#login').find('button.close').click();

@@ -49,6 +49,9 @@ body {
 	margin-right:10px;
 	margin-left:10px;
 }
+#bs-example-navbar-collapse-1 ul.nav li._logout {
+	display:none;
+}
 #bs-example-navbar-collapse-1 ul.nav li a:hover ,
 #bs-example-navbar-collapse-1 ul.nav li.dropdown.open > a ,	
 #bs-example-navbar-collapse-1 ul.nav li.dropdown:hover > a {
@@ -107,7 +110,7 @@ nav li.dropdown:hover .dropdown-menu {
 	width:100%;
 }
 ._search_box_ .form-inline .form-group:nth-child(2) {
-	width:40%;
+	width:55%;
 }
 ._search_box_ .form-inline .form-group:nth-child(3) ,._search_box_ .form-inline .form-group:nth-child(4), ._search_box_ .form-inline .form-group:nth-child(5){
 	width:15%;
@@ -328,6 +331,9 @@ ul._see_more_tickets li a:hover {
 	background-color:#2e7839;
 	color:#fff;
 	text-transform:uppercase;
+}
+._sell_tickets_friends > div ._sell_button_:hover {
+	text-decoration:none;
 }
 ._friends_on_ticketmaster {
 	background-color:#d9d9d9;

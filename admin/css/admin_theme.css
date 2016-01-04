@@ -1,0 +1,32 @@
+.hide , #screen-options-wrap.hidden {
+	display:block !important;
+}
+body {
+	/* min-height:100%;
+	height:auto; */
+}
+._theme_options form input[type=submit] {
+	float:right;
+	min-width:160px;
+	padding-top:20px;
+	padding-bottom:20px;
+	line-height:0;
+	font-size:20px;
+	text-transform:uppercase;
+	margin-top:20px;
+}
+._theme_options form .cmb-row,
+._theme_options form .cmb-row:last-of-type  {
+	border-bottom:2px solid #e5e5e5;
+}
+._theme_options form .cmb-row.cmb2-id-greenzone-sell-tickets-image ,
+._theme_options form .cmb-row.cmb2-id-greenzone-sell-tickets-title,
+._theme_options form .cmb-row.cmb2-id-greenzone-sell-tickets-button-text,
+._theme_options form .cmb-row.cmb2-id-greenzone-footer-facebook ,
+._theme_options form .cmb-row.cmb2-id-greenzone-footer-gmail,
+._theme_options form .cmb-row.cmb2-id-greenzone-footer-twitter ,
+._theme_options form .cmb-row.cmb2-id-greenzone-footer-youtube ,
+._theme_options form .cmb-row.cmb2-id-greenzone-footer-weekdays-start-timing ,
+._theme_options form .cmb-row.cmb2-id-greenzone-footer-weekends-start-timing {
+	border-bottom:2px solid transparent;
+}

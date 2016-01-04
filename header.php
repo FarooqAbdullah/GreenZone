@@ -8,6 +8,7 @@
  * @subpackage GreenZone
  */
  ?>
+<?php $field_value = get_option('greenzone'); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +29,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			  </button>
-			  <a class="navbar-brand" href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/logo.png" alt="Logo" /></a>
+			  <a class="navbar-brand" href="<?php echo site_url(); ?>"><img src="<?php echo $field_value['greenzone-main-logo']; ?>" alt="Logo" /></a>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
@@ -58,58 +59,49 @@
 			}
 				
 			?>
-			  <!-- <ul class="nav navbar-nav navbar-right">
-				<li><a href="index.html">Home</a> <span class="_separator"></span></li>
-				<li><a href="about_us.html">About Us</a><span class="_separator"></span></li>
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Services</a>
-					<span class="_separator"></span>
-					<ul class="dropdown-menu">
-						<li><a href="#">Action</a></li>
-						<li><a href="#">Another action</a></li>
-						<li><a href="#">Something else here</a></li>
-					</ul>
-				</li>
-				<li><a href="#" data-toggle="modal" data-target="#login">Login</a><span class="_separator"></span></li>
-				<li><a href="#">News</a><span class="_separator"></span></li>
-				<li><a href="contact.html">Contact Us</a></li>
-			  </ul> -->
 			</div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
 		</nav>
 	</header>
+	
 	<div class="_slider_wrqapper_">
+		<?php if(is_front_page() || is_home()) { ?>
 		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 			<!-- Indicators -->
 			<ol class="carousel-indicators">
-				<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-				<li data-target="#carousel-example-generic" data-slide-to="1"></li>
-				<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+			<?php 
+				$count_posts = wp_count_posts('slider_zone');
+				for($slide_count=0; $slide_count<(int) $count_posts->publish; $slide_count++) {
+					?>
+					<li data-target="#carousel-example-generic" data-slide-to="<?php echo $slide_count; ?>" <?php if($slide_count == 0){ echo 'class="active"'; } ?>></li>
+					<?php
+				}
+			?>
 			</ol>
 
 			<!-- Wrapper for slides -->
 			<div class="carousel-inner" role="listbox">
-				<div class="item active">
-					<img src="<?php echo get_template_directory_uri(); ?>/images/slider_image1.jpg" alt="slidser Images">
+			<?php 
+			
+			$slider_post_array = array('post_type'=> 'slider_zone', 'posts_per_page' => -1,'orderby'=> 'DESC',);
+			$slider_query = new WP_Query( $slider_post_array ); // exclude category 9
+			$loop_count = 0;
+			while($slider_query->have_posts()) : $slider_query->the_post(); 
+			$image = wp_get_attachment_image_src(get_post_thumbnail_id(),'full');
+			$active = ($loop_count == 0) ? ' active' : '';
+			?>
+				
+				<div class="item<?php echo $active; ?>">
+					<img src="<?php echo $image[0]; ?>" alt="slidser Images">
 					<div class="carousel-caption">
-						<h3>Green Zone Tickets</h3>
-						<p>is the best market place for fans to buy and sell Sports, Concerts, and theater tickets online</p>
+						<h3><?php the_title(); ?></h3>
+						<p><?php the_content(); ?></p>
 					</div>
 				</div>
-				<div class="item">
-					<img src="<?php echo get_template_directory_uri(); ?>/images/slider-2.jpg" alt="slidser Images">
-					<div class="carousel-caption">
-						<h3>Green Zone Tickets</h3>
-						<p>is the best market place for fans to buy and sell Sports, Concerts, and theater tickets online</p>
-					</div>
-				</div>
-				<div class="item">
-					<img src="<?php echo get_template_directory_uri(); ?>/images/slider-3.jpg" alt="slidser Images">
-					<div class="carousel-caption">
-						<h3>Green Zone Tickets</h3>
-						<p>is the best market place for fans to buy and sell Sports, Concerts, and theater tickets online</p>
-					</div>
-				</div>
+				
+				<?php $loop_count++; ?>
+				
+			<?php endwhile; wp_reset_query(); ?>
 			 </div>
 			<!-- Controls -->
 			<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
@@ -120,6 +112,7 @@
 				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 				<span class="sr-only">Next</span>
 			</a>
+			
 			<div class="_search_box_">
 				<div class="_form_overlay"></div>
 				<a href="#" class="_sewarch_form_respo">Click to Search</a>
@@ -132,9 +125,6 @@
 					<div class="form-group">
 						<label class="sr-only" for="all_tickets"></label>
 						<input type="text" class="form-control" id="search_item" name="search_item" placeholder="Event name, Artist, Venue, Sports name" />
-					</div><div class="form-group _all_tickets_cckbox">
-						<label class="sr-only" for="all_tickets"></label>
-						<input type="text" class="form-control" id="all_tickets" name="all_tickets" placeholder="All Tickets" />
 					</div><div class="form-group _location_wrapper_">
 						<label class="sr-only" for="location"></label>
 						<input type="text" class="form-control" id="location" name="location" placeholder="Location" />
@@ -160,4 +150,19 @@
 				</form>
 			</div>
 		</div>
+	<?php 
+	} 
+	else {
+		$banner_image = wp_get_attachment_image_src(get_post_thumbnail_id(),'full');
+		if($banner_image !== false) {
+			?>
+			<div class="_banner_image">
+				<img src="<?php echo $banner_image[0]; ?>"  alt="Banner Image"/>
+				<h2 class="_page_title"><?php the_title(); ?></h2>
+				<div class="_form_overlay"></div>
+			</div>
+			<?php
+		}
+	}
+	?>
 	</div>

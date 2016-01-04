@@ -220,10 +220,13 @@ get_header();
 				<div class="col-lg-3 col-md-3 cool-sm-12 col-xs-12 padding_0">
 					<div class="row _sell_tickets_friends">
 						<div class="col-md-12 col-sm-12 padding_0">
-							<img src="<?php echo get_template_directory_uri(); ?>/images/people.jpg" alt="people"/>
+						<?php
+							$field_body_footer = get_option('greenzone');
+						?>
+							<img src="<?php echo $field_body_footer['greenzone-sell-tickets-image']; ?>" alt="people"/>
 							<span class="_people_overlay"></span>
-							<h3 class="_people_overlay_title">Sell Tickets to another Friend</h3>
-							<a href="#" class="_sell_button_">Sell Tickets</a>
+							<h3 class="_people_overlay_title"><?php echo $field_body_footer['greenzone-sell-tickets-title']; ?></h3>
+							<a href="<?php echo $field_body_footer['greenzone-sell-tickets-button-u']; ?>" class="_sell_button_"><?php echo $field_body_footer['greenzone-sell-tickets-button-text']; ?></a>
 						</div>
 					</div>
 					<div class="row _friends_on_ticketmaster">
@@ -348,7 +351,7 @@ get_header();
 					<div class="row _likes_on_facebook">
 						<div class="col-md-12 col-sm-12 padding_0">
 							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-								<img src="<?php echo get_template_directory_uri(); ?>/images/footer_logo.jpg" alt="Company Logo">
+								<img src="<?php echo $field_body_footer['greenzone-footer-header-logo']; ?>" alt="Company Logo">
 							</div>
 							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
 								<h3 class="padding-left_0">Company Tickets <span class="glyphicon glyphicon-ok"></span></h3>
