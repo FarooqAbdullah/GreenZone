@@ -209,6 +209,7 @@ button.Zebra_DatePicker_Icon_Inside {
 }
 ._content_wrapper {
 	margin-top:400px;
+	min-height:500px;
 }
 ._left_sidebar_ .thumbnail {
 	padding:0;
@@ -304,8 +305,8 @@ ul._see_more_tickets li a:hover {
 ._sell_tickets_friends > div ._people_overlay {
 	width:100%;
 	height:100%;
-	background-color:#fff;
-	opacity:0.8;
+	/* background-color:#fff; */
+	opacity:1;
 	position:absolute;
 	left:0;
 	top:0;
@@ -315,7 +316,8 @@ ul._see_more_tickets li a:hover {
 	height:100%;
 	position:absolute;
 	padding:15px;
-	margin-top:15%;
+	margin-top:0;
+	color:#fff;
 	left:0;
 	right:0;
 	top:0;
@@ -583,6 +585,7 @@ footer {
 }
 ._inner_pages ._content_wrapper {
 	margin-top:400px;
+	min-height:500px;
 }
 ._our_team_wrapper {
 	margin-top:20px;

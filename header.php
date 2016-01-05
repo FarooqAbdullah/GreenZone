@@ -65,7 +65,7 @@
 	</header>
 	
 	<div class="_slider_wrqapper_">
-		<?php if(is_front_page() || is_home()) { ?>
+		<?php if(is_front_page() || is_home() || is_search()) { ?>
 		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 			<!-- Indicators -->
 			<ol class="carousel-indicators">
@@ -116,7 +116,7 @@
 			<div class="_search_box_">
 				<div class="_form_overlay"></div>
 				<a href="#" class="_sewarch_form_respo">Click to Search</a>
-				<form action="" method="post" name="search_site" class="form-inline">
+				<form role="search" action="" method="get" name="search_site" class="search-form form-inline" action="'.site_url('/').'" >
 					<div class="row _cross_form">
 						<p>
 							<span>X</span>
@@ -124,7 +124,7 @@
 					</div>
 					<div class="form-group">
 						<label class="sr-only" for="all_tickets"></label>
-						<input type="text" class="form-control" id="search_item" name="search_item" placeholder="Event name, Artist, Venue, Sports name" />
+						<input type="search" class="form-control search-field" id="search_item" name="s" placeholder="Event name, Artist, Venue, Sports name" />
 					</div><div class="form-group _location_wrapper_">
 						<label class="sr-only" for="location"></label>
 						<input type="text" class="form-control" id="location" name="location" placeholder="Location" />
@@ -146,7 +146,7 @@
 								<li class="_calender_wrapper"><input type="text" class="datepicker" value="Pick a Date"></li>
 							</ul>
 						</div>
-					</div><button type="submit" class="btn btn-default">Search</button>
+					</div><button type="submit" class="search-submit btn btn-default">Search</button>
 				</form>
 			</div>
 		</div>

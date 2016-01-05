@@ -7,5 +7,8 @@
 
 get_header();
 ?>
+<div class="container _content_wrapper">
+	<?php the_content(); ?>
+</div>
 <?php
 get_footer();

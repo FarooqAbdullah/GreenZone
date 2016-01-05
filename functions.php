@@ -11,6 +11,7 @@
 function theme_includes() {
 	require("admin/cmb2/init.php");
     require("admin/theme_options.php");
+    require("admin/custom_fields/customfields.php");
 }
 add_action('init', 'theme_includes');
 
@@ -202,12 +203,28 @@ function _default_login() {
 			);
 		</script>
 		<style>
-			#bs-example-navbar-collapse-1 ul.nav li._login {
-				display:none;
+			<?php 
+			if(is_user_logged_in()) {
+				?>
+				#bs-example-navbar-collapse-1 ul.nav li._login {
+					display:none;
+				}
+				#bs-example-navbar-collapse-1 ul.nav li._logout {
+					display:block;
+				}
+				<?php
 			}
-			#bs-example-navbar-collapse-1 ul.nav li._logout {
-				display:block;
+			else {
+				?>
+				#bs-example-navbar-collapse-1 ul.nav li._login {
+					display:block;
+				}
+				#bs-example-navbar-collapse-1 ul.nav li._logout {
+					display:none;
+				}
+				<?php
 			}
+			?>
 		</style>
 		<?php
 }
@@ -332,7 +349,7 @@ class column_widget_info extends WP_Widget {
         <p>Title : <input name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title );?>" /></p>
 
         <p>Description :<p>
-		<p><textarea class="widefat" rows="7" cols="20" name="<?php echo $this->get_field_name( 'description' ); ?>" id="<?php echo $this->get_field_id( 'description' ); ?>" ><?php echo esc_html( $description ); ?></textarea></p>
+		<p><textarea class="widefat" rows="7" cols="20" name="<?php echo $this->get_field_name( 'description' ); ?>" id="<?php echo $this->get_field_id( 'description' ); ?>" ><?php echo trim( $description ); ?></textarea></p>
 
         <p>Button Text : <input name="<?php echo $this->get_field_name( 'button_text' ); ?>" type="text" value="<?php echo esc_attr( $button_text ); ?>" /></p>
 
@@ -348,7 +365,7 @@ class column_widget_info extends WP_Widget {
 
         $instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
 
-        $instance['description'] = ( ! empty( $new_instance['description'] ) ) ? strip_tags( $new_instance['description'] ) : '';
+        $instance['description'] = ( ! empty( $new_instance['description'] ) ) ? htmlentities( $new_instance['description'] ) : '';
 
         $instance['button_text'] = ( ! empty( $new_instance['button_text'] ) ) ? strip_tags( $new_instance['button_text'] ) : '';
 
@@ -378,7 +395,8 @@ class column_widget_info extends WP_Widget {
 			$return .= '<h3>'.$title.'</h3>';
 		}
 		if(isset($description) && !empty($description)) {
-			$return .= '<p>'.$description.'</p>';
+			$content = html_entity_decode($description);
+			$return .= '<p>'.$content.'</p>';
 		}
 		$return .= '</div>';
 		$return .= '<div class="row">';
@@ -390,7 +408,7 @@ class column_widget_info extends WP_Widget {
 		else {
 			$button_url = '#';
 		}
-		if( isset($button_text) && !empty(trim($button_text)) ) {
+		if( isset($button_text) && !empty($button_text) ) {
 			$return .= '<p><a href="'.$button_url.'" class="_chat btn btn-default">'.$button_text.'</a></p>';
 		}
 		$return .= '</div>';

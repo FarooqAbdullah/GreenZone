@@ -20,21 +20,6 @@
 					// Footer Column Right
 					dynamic_sidebar('green-zone-footer-1'); 
 				?>
-					<!-- <div class="row">
-						<h3>Customer Support</h3>
-						<p>Help Topics: Visit our help topics to search for answer to your qustions or browse popular topics.</p>
-					</div>
-					<div class="row">
-						<h3>Find Answers to Frequently asked Questions online</h3>
-						<p><a href="<?php // echo get_permalink(get_page_by_path('faq')); ?>" class="_faq btn btn-default">Faq</a></p>
-					</div>
-					<div class="row">
-						<h3>Chat: Need Help now</h3>
-						<p>You can chat with us anytime - 24 hours a day, 7 bdays a week. We are here When You need us.</p>
-					</div>
-					<div class="row">
-						<p><a href="#" class="_chat btn btn-default">Chat</a></p>
-					</div> -->
 					<div class="row">
 						<h3>Phone</h3>
 					</div>
@@ -46,23 +31,6 @@
 					</div>
 				</div>
 				<div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
-					<!-- <div class="row">
-						<h3>Meida & Press</h3>
-						<p>For Media & Pressw inquiries Please Visit <a href="#" class="_company_preess_box">Company Press Box</a></p>
-					</div>
-					<div class="row">
-						<h3>Corporate Office</h3>
-						<p>Stub Hub</p>
-						<p>199 Fremont Street, Floor 4</p>
-						<p>Sans Fransisico CA.94105</p>
-					</div>
-					<div class="row">
-						<h3>Register</h3>
-						<h3>About</h3>
-						<h3>Contact</h3>
-						<h3>T & C</h3>
-						<h3>Private Policy</h3>
-					</div> -->
 					<?php 
 					// Footer Column Right
 					dynamic_sidebar('green-zone-footer-2');
