@@ -198,7 +198,7 @@ function _default_login() {
 		<script>
 			jQuery(document).ready(
 				function($) {
-					$('#menu-main_navigation').find('> li._logout').find('a').attr('href', "<?php echo wp_logout_url(get_permalink(get_the_ID())); ?>");
+					$('#menu-main_navigation').find('> li._logout').find('a').attr('href', "<?php echo str_replace('&amp;','&',wp_logout_url(site_url())); ?>");
 				}
 			);
 		</script>
